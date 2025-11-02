@@ -9,12 +9,16 @@ def get_book_text(filepath):
     return file_contents
 
 def main():
-    text = get_book_text()
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    filepath = sys.argv[1]
+    text = get_book_text(filepath)
     text_number = numbers(text)
     letters_number = count_characters(text)
     alist = build_sorted_list(letters_number)
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {filepath}...")
     print("----------- Word Count ----------")
     print(f"Found {text_number} total words")
     print("--------- Character Count -------")
